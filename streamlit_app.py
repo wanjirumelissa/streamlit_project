@@ -11,9 +11,14 @@ from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import StandardScaler
 import joblib
 from sklearn.metrics import mean_squared_error, r2_score
+import os
+
+# Print current working directory and list of files
+print("Current Working Directory:", os.getcwd())
+print("Files in Current Directory:", os.listdir())
 
 # Load the model
-model_path = "C:/Users/admin/Documents/Project_ADS/best_model1.pkl"
+model_path = "best_model1.pkl"
 loaded_model = joblib.load(model_path)
 
 # Streamlit App
@@ -65,7 +70,7 @@ if uploaded_file is not None:
 
     # Evaluation metrics
     st.subheader("Model Evaluation Metrics")
-    y_test = df["income"]  # Replace with your actual target variable
+    y_test = df["income"]  
     y_pred = loaded_model.predict(df[numeric_columns])
     st.write("Mean Squared Error:", mean_squared_error(y_test, y_pred))
     st.write("R-squared:", r2_score(y_test, y_pred))
